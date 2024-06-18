@@ -42,6 +42,7 @@ dependencies:
   lottie: ^3.1.2
   sqflite: ^2.3.3+1
   path: ^1.9.0
+  introduction_screen: ^3.1.14
 
 dev_dependencies:
   flutter_test:

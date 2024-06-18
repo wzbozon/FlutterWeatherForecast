@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_forecast/components/title_widget.dart';
-import 'package:flutter_weather_forecast/components/animated_color_box.dart';
-import 'package:flutter_weather_forecast/components/animated_text.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_weather_forecast/pages/onboarding_page.dart';
 
-import 'pages/weather_page.dart';
-import 'pages/add_city_page.dart';
+void main() => runApp(const App());
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class App extends StatelessWidget {
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+    );
+
+    return MaterialApp(
+      title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
-      home: AddCityPage(),
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
+      home: const OnboardingPage(),
     );
   }
 }
-
