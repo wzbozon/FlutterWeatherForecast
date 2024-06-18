@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import 'package:path/path.dart' as path;
 import '../models/city_model.dart';
 
 class AddCityPage extends StatefulWidget {
@@ -33,7 +33,7 @@ class _AddCityPageState extends State<AddCityPage> {
 
   Future<void> _addCityToDatabase(City city) async {
     final database = openDatabase(
-      join(await getDatabasesPath(), 'cities_database.db'),
+      path.join(await getDatabasesPath(), 'cities_database.db'),
       onCreate: (db, version) {
         return db.execute(
           'CREATE TABLE cities(id INTEGER PRIMARY KEY, name TEXT, latitude REAL, longitude REAL)',
@@ -58,7 +58,7 @@ class _AddCityPageState extends State<AddCityPage> {
     if (name.isNotEmpty && latitude != null && longitude != null) {
       final city = City(name: name, latitude: latitude, longitude: longitude);
       _addCityToDatabase(city);
-      // Navigator.pop(context as BuildContext, city);
+      Navigator.pop(context);
     }
   }
 

@@ -16,4 +16,12 @@ class City {
       'longitude': longitude,
     };
   }
+
+  factory City.fromMap(Map<String, dynamic> map) {
+    return City(
+      name: map['name'],
+      latitude: map['latitude'],
+      longitude: map['longitude'],
+    );
+  }
 }

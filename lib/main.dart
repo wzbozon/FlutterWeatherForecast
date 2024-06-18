@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_weather_forecast/pages/city_list_page.dart';
 import 'package:flutter_weather_forecast/pages/onboarding_page.dart';
 
 void main() => runApp(const App());
@@ -17,7 +18,7 @@ class App extends StatelessWidget {
       title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-      home: const OnboardingPage(),
+      home: const CityListPage(),
     );
   }
 }
