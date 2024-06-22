@@ -4,7 +4,6 @@ import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../models/city_model.dart';
-import '../pages/add_city_page.dart';
 
 class CityListPage extends StatefulWidget {
   const CityListPage({super.key});
@@ -38,14 +37,14 @@ class _CityListPageState extends State<CityListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('City List'),
+        title: const Text('City List'),
         actions: [
           IconButton(
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             onPressed: () async {
               await Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddCityPage()),
+                MaterialPageRoute(builder: (context) => const AddCityPage()),
               ).then((_) {
                 _fetchCitiesFromDatabase();
               });

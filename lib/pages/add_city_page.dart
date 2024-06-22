@@ -66,28 +66,28 @@ class _AddCityPageState extends State<AddCityPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add City'),
+        title: const Text('Add City'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             TextField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'City Name'),
+              decoration: const InputDecoration(labelText: 'City Name'),
             ),
             TextField(
               controller: _latitudeController,
-              decoration: InputDecoration(labelText: 'Latitude'),
+              decoration: const InputDecoration(labelText: 'Latitude'),
             ),
             TextField(
               controller: _longitudeController,
-              decoration: InputDecoration(labelText: 'Longitude'),
+              decoration: const InputDecoration(labelText: 'Longitude'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _addCity,
-              child: Text('Add City'),
+              child: const Text('Add City'),
             ),
           ],
         ),

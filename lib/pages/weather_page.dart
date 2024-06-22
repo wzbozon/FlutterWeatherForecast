@@ -86,7 +86,15 @@ class _WeatherPageState extends State<WeatherPage> {
             Text('${_weather?.temperature.round()}\u00B0C'),
 
             // weather condition
-            Text(_weather?.mainCondition ?? '')
+            Text(_weather?.mainCondition ?? ''),
+
+            // city list button
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/city_list');
+              },
+              child: Text('City List'),
+            ),
           ],
         ),
       ),
