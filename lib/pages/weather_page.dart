@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../models/city_model.dart';
 import '../models/weather_model.dart';
@@ -19,9 +21,7 @@ class _WeatherPageState extends State<WeatherPage> {
   // fetch weather
   _fetchWeather(String? cityName) async {
     // get current city
-    if (cityName == null) {
-      cityName = await _weatherService.getCurrentCity();
-    }
+    cityName ??= await _weatherService.getCurrentCity();
 
     // get weather for city
     try {
@@ -73,12 +73,12 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 
   Widget _buildCityListButton() {
-    return ElevatedButton(
+    return IconButton(
       onPressed: () async {
         final selectedCity = await Navigator.pushNamed(context, '/city_list') as City;
         _fetchWeather(selectedCity.name);
       },
-      child: Text('Select City'),
+      icon: const Icon(Icons.search, color: Colors.blue, size: 36),
     );
   }
 
@@ -90,23 +90,72 @@ class _WeatherPageState extends State<WeatherPage> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // city name
+        // City name
         Text(
           _weather?.cityName ?? "loading city ...",
-          style: const TextStyle(
-            fontSize: 20,
-          ),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
 
-        // animation
-        Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
+        // Date
+        Text(
+          _weather?.humanReadableDate() ?? "",
+          style: const TextStyle(fontSize: 14, color: Colors.black45),
+        ),
 
-        // temperature
-        Text('${_weather?.temperature.round()}\u00B0C'),
+        // Spacer
+        const SizedBox(height: 20),
 
-        // weather condition
-        Text(_weather?.mainCondition ?? ''),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Temperature
+                Text(
+                  '${_weather?.temperature.round()}',
+                  style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                ),
+
+                // Weather condition
+                Text(
+                  _weather?.mainCondition ?? '',
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black45),
+                ),
+              ],
+            ),
+
+            // Temperature units
+            const Column(children: [
+              const Text(
+                '\u00B0C',
+                style: const TextStyle(fontSize: 36),
+              ),
+              const SizedBox(height: 40),
+            ]),
+
+            // Animation
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.45,
+              child: Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text(
+        'Today',
+        style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
+      ),
+      automaticallyImplyLeading: false, // hide back button
+      actions: [
+        _buildCityListButton(),
       ],
     );
   }
@@ -114,18 +163,15 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('WeatherNow'),
-        automaticallyImplyLeading: false, // hide back button
-      ),
+      appBar: _buildAppBar(),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(36.0),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _buildWeatherInfo(),
-              _buildCityListButton(),
             ],
           ),
         ),

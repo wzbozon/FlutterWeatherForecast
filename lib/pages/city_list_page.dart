@@ -101,15 +101,25 @@ class _CityListPageState extends State<CityListPage> {
         itemCount: cities.length,
         itemBuilder: (context, index) {
           final city = cities[index];
-          return ListTile(
-            title: Text(city.name),
-            subtitle: Text('Latitude: ${city.latitude}, Longitude: ${city.longitude}'),
-            onTap: () {
-              Navigator.pop(context, city);
-            },
+          return Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0), // Remove round corners
+              ),
+              color: Colors.white,
+              child: ListTile(
+                title: Text(city.name),
+                subtitle: Text('Latitude: ${city.latitude}, Longitude: ${city.longitude}'),
+                onTap: () {
+                  Navigator.pop(context, city);
+                },
+              ),
+            ),
           );
         },
       ),
+      backgroundColor: Colors.white,
     );
   }
 }
