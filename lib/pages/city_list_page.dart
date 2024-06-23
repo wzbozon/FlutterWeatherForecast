@@ -22,7 +22,7 @@ class _CityListPageState extends State<CityListPage> {
     super.initState();
 
     Future.delayed(Duration.zero, () async {
-      await _clearDatabase();
+      // await _clearDatabase();
       await _addDefaultCitiesToDatabase(context);
       await _fetchCitiesFromDatabase();
     });
@@ -50,7 +50,7 @@ class _CityListPageState extends State<CityListPage> {
     if (count == 0) {
       AssetBundle rootBundle = DefaultAssetBundle.of(context);
       String citiesJsonFile = "default_cities.json";
-      String citiesJsonString = await rootBundle.loadString('assets/$citiesJsonFile');
+      String citiesJsonString = await rootBundle.loadString('assets/json/$citiesJsonFile');
       Map<String, dynamic> citiesDict = jsonDecode(citiesJsonString);
       List<dynamic> citiesJson = citiesDict["cities"];
       for (var cityJson in citiesJson) {
@@ -72,7 +72,6 @@ class _CityListPageState extends State<CityListPage> {
       version: 1,
     );
     final db = await database;
-    final count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM cities'));
     final cityMaps = await db.query('cities');
     setState(() {
       cities = cityMaps.map((cityMap) => City.fromMap(cityMap)).toList();
@@ -83,7 +82,7 @@ class _CityListPageState extends State<CityListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('City List'),
+        title: const Text('Select City'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -105,6 +104,9 @@ class _CityListPageState extends State<CityListPage> {
           return ListTile(
             title: Text(city.name),
             subtitle: Text('Latitude: ${city.latitude}, Longitude: ${city.longitude}'),
+            onTap: () {
+              Navigator.pop(context, city);
+            },
           );
         },
       ),
