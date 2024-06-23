@@ -1,4 +1,4 @@
-name: flutter_weather_forecast
+name: weather_now
 description: "A Flutter-based weather forecast app"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.

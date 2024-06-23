@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/flutter_weather_forecast.iml" filepath="$PROJECT_DIR$/flutter_weather_forecast.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/flutter_weather_forecast_android.iml" filepath="$PROJECT_DIR$/android/flutter_weather_forecast_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/weather_now.iml" filepath="$PROJECT_DIR$/weather_now.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/weather_now_android.iml" filepath="$PROJECT_DIR$/android/weather_now_android.iml" />
     </modules>
   </component>
 </project>

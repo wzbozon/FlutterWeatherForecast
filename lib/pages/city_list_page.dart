@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_forecast/pages/add_city_page.dart';
+import 'package:weather_now/pages/add_city_page.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
 
