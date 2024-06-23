@@ -1,0 +1,104 @@
+{
+  "cities": [
+    {
+      "name": "New York",
+      "latitude": 40.7128,
+      "longitude": -74.0060
+    },
+    {
+      "name": "London",
+      "latitude": 51.5074,
+      "longitude": -0.1278
+    },
+    {
+      "name": "Tokyo",
+      "latitude": 35.6895,
+      "longitude": 139.6917
+    },
+    {
+      "name": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522
+    },
+    {
+      "name": "Sydney",
+      "latitude": -33.8651,
+      "longitude": 151.2099
+    },
+    {
+      "name": "Dubai",
+      "latitude": 25.2048,
+      "longitude": 55.2708
+    },
+    {
+      "name": "Moscow",
+      "latitude": 55.7558,
+      "longitude": 37.6176
+    },
+    {
+      "name": "Berlin",
+      "latitude": 52.5200,
+      "longitude": 13.4050
+    },
+    {
+      "name": "Rome",
+      "latitude": 41.9028,
+      "longitude": 12.4964
+    },
+    {
+      "name": "Beijing",
+      "latitude": 39.9042,
+      "longitude": 116.4074
+    },
+    {
+      "name": "Cairo",
+      "latitude": 30.0444,
+      "longitude": 31.2357
+    },
+    {
+      "name": "Rio de Janeiro",
+      "latitude": -22.9068,
+      "longitude": -43.1729
+    },
+    {
+      "name": "Toronto",
+      "latitude": 43.6510,
+      "longitude": -79.3470
+    },
+    {
+      "name": "Mumbai",
+      "latitude": 19.0760,
+      "longitude": 72.8777
+    },
+    {
+      "name": "Los Angeles",
+      "latitude": 34.0522,
+      "longitude": -118.2437
+    },
+    {
+      "name": "Madrid",
+      "latitude": 40.4168,
+      "longitude": -3.7038
+    },
+    {
+      "name": "Seoul",
+      "latitude": 37.5665,
+      "longitude": 126.9780
+    },
+    {
+      "name": "Amsterdam",
+      "latitude": 52.3702,
+      "longitude": 4.8952
+    },
+    {
+      "name": "Singapore",
+      "latitude": 1.3521,
+      "longitude": 103.8198
+    },
+    {
+      "name": "Mexico City",
+      "latitude": 19.4326,
+      "longitude": -99.1332
+    }
+  ]
+}

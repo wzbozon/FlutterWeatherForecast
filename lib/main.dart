@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'pages/weather_page.dart';
 import 'pages/city_list_page.dart';
+import 'pages/onboarding_page.dart';
 
 void main() => runApp(const App());
 
@@ -19,9 +20,9 @@ class App extends StatelessWidget {
       title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-      // Define routes
       routes: {
-        '/': (context) => WeatherPage(),
+        '/': (context) => OnboardingPage(),
+        '/weather': (context) => WeatherPage(),
         '/city_list': (context) => CityListPage(),
       },
     );
