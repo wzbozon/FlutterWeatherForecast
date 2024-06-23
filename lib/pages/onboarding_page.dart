@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:weather_now/main.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -54,7 +55,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
           image: _buildImage('onboarding/3.jpg'),
         ),
       ],
-      onDone: () => _onIntroEnd(context),
+      onDone: () {
+        _onIntroEnd(context);
+        markOnboardingShown();
+      },
       showBackButton: false,
       next: const Icon(Icons.arrow_forward),
       done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
