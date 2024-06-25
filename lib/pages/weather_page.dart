@@ -82,6 +82,68 @@ class _WeatherPageState extends State<WeatherPage> {
     );
   }
 
+  Widget _buildCityName() {
+    return Text(
+      _weather?.name ?? "loading city ...",
+      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget _buildDate() {
+    return Text(
+      _weather?.humanReadableDate() ?? "",
+      style: const TextStyle(fontSize: 14, color: Colors.black45),
+    );
+  }
+
+  Widget _buildTempCondition() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Temperature
+            Text(
+              '${_weather?.main.temp.round()}',
+              style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+            ),
+
+            // Weather condition
+            Text(
+              _weather?.weather[0].main ?? '',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black45),
+            ),
+          ],
+        ),
+
+        // Temperature units
+        const Column(children: [
+          const Text(
+            '\u00B0C',
+            style: const TextStyle(fontSize: 36),
+          ),
+          const SizedBox(height: 40),
+        ]),
+
+        // Animation
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.45,
+          child: Lottie.asset(getWeatherAnimation(_weather?.weather[0].main)),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHumidity() {
+    return Column(
+      children: [
+        Text('Humidity'),
+        Text('${_weather?.main.humidity.round()} %')
+      ],
+    );
+  }
+
   Widget _buildWeatherInfo() {
     if (_weather == null) {
       return const CircularProgressIndicator();
@@ -93,56 +155,19 @@ class _WeatherPageState extends State<WeatherPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // City name
-        Text(
-          _weather?.cityName ?? "loading city ...",
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
+        _buildCityName(),
 
         // Date
-        Text(
-          _weather?.humanReadableDate() ?? "",
-          style: const TextStyle(fontSize: 14, color: Colors.black45),
-        ),
+        _buildDate(),
 
         // Spacer
         const SizedBox(height: 20),
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Temperature
-                Text(
-                  '${_weather?.temperature.round()}',
-                  style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
-                ),
+        // Temperature and condition
+        _buildTempCondition(),
 
-                // Weather condition
-                Text(
-                  _weather?.mainCondition ?? '',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300, color: Colors.black45),
-                ),
-              ],
-            ),
-
-            // Temperature units
-            const Column(children: [
-              const Text(
-                '\u00B0C',
-                style: const TextStyle(fontSize: 36),
-              ),
-              const SizedBox(height: 40),
-            ]),
-
-            // Animation
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.45,
-              child: Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
-            ),
-          ],
-        ),
+        // Humidity
+        _buildHumidity()
       ],
     );
   }
