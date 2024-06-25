@@ -117,7 +117,9 @@ class _WeatherPageState extends State<WeatherPage> {
                       '\u00B0C',
                       style: TextStyle(fontSize: 36),
                     ),
-                    SizedBox(height: 20,)
+                    SizedBox(
+                      height: 20,
+                    )
                   ],
                 ),
               ],
@@ -145,55 +147,71 @@ class _WeatherPageState extends State<WeatherPage> {
       return const CircularProgressIndicator();
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        // City name
-        _buildCityName(),
-
-        // Date
-        _buildDate(),
-
-        // Spacer
-        const SizedBox(height: 20),
-
-        // Temperature and condition
-        _buildTempCondition(),
-
-        // Spacer
-        const SizedBox(height: 20),
-
-        // Spacer
-        const SizedBox(height: 8),
-
-        // Info collection
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ValueWidget(title: 'Humidity', value: '${_weather?.main.humidity} %'),
-            const SizedBox(width: 8),
-            ValueWidget(title: 'Temp min', value: '${_weather?.main.tempMin.round()} \u00B0C'),
-            const SizedBox(width: 8),
-            ValueWidget(title: 'Temp max', value: '${_weather?.main.tempMax.round()} \u00B0C'),
-          ],
-        ),
-
-        // Spacer
-        const SizedBox(height: 8),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ValueWidget(title: 'Pressure', value: '${_weather?.main.pressure} mb'),
-            const SizedBox(width: 8),
-            ValueWidget(title: 'Wind', value: '${_weather?.wind.speed.round()} m/s'),
-            const SizedBox(width: 8),
-            ValueWidget(title: 'Feels like', value: '${_weather?.main.feelsLike.round()} \u00B0C'),
-          ],
-        ),
-      ],
+    return Expanded(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // City name
+          _buildCityName(),
+      
+          // Date
+          _buildDate(),
+      
+          // Spacer
+          const SizedBox(height: 20),
+      
+          // Temperature and condition
+          _buildTempCondition(),
+      
+          // Spacer
+          const SizedBox(height: 20),
+      
+          // Spacer
+          const SizedBox(height: 8),
+      
+          // Info collection
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ValueWidget(title: 'Humidity', value: '${_weather?.main.humidity} %'),
+              const SizedBox(width: 8),
+              ValueWidget(title: 'Temp min', value: '${_weather?.main.tempMin.round()} \u00B0C'),
+              const SizedBox(width: 8),
+              ValueWidget(title: 'Temp max', value: '${_weather?.main.tempMax.round()} \u00B0C'),
+            ],
+          ),
+      
+          // Spacer
+          const SizedBox(height: 8),
+      
+          // Info collection
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ValueWidget(title: 'Pressure', value: '${_weather?.main.pressure} mb'),
+              const SizedBox(width: 8),
+              ValueWidget(title: 'Wind', value: '${_weather?.wind.speed.round()} m/s'),
+              const SizedBox(width: 8),
+              ValueWidget(title: 'Feels like', value: '${_weather?.main.feelsLike.round()} \u00B0C'),
+            ],
+          ),
+      
+          // Spacer
+          Expanded(
+            child: SizedBox(),
+          ),
+      
+          // Copyright
+          Center(
+            child: Text(
+              'Created by Denis Kutlubaev',
+              style: TextStyle(fontWeight: FontWeight.w200),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
