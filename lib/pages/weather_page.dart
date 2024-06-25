@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:weather_now/components/value_widget.dart';
 import '../models/city_model.dart';
 import '../models/weather_model.dart';
 import '../services/weather_service.dart';
@@ -104,9 +105,22 @@ class _WeatherPageState extends State<WeatherPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Temperature
-            Text(
-              '${_weather?.main.temp.round()}',
-              style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+            Row(
+              children: [
+                Text(
+                  '${_weather?.main.temp.round()}',
+                  style: const TextStyle(fontSize: 60, fontWeight: FontWeight.bold),
+                ),
+                const Column(
+                  children: [
+                    Text(
+                      '\u00B0C',
+                      style: TextStyle(fontSize: 36),
+                    ),
+                    SizedBox(height: 20,)
+                  ],
+                ),
+              ],
             ),
 
             // Weather condition
@@ -117,29 +131,11 @@ class _WeatherPageState extends State<WeatherPage> {
           ],
         ),
 
-        // Temperature units
-        const Column(children: [
-          const Text(
-            '\u00B0C',
-            style: const TextStyle(fontSize: 36),
-          ),
-          const SizedBox(height: 40),
-        ]),
-
         // Animation
         SizedBox(
           width: MediaQuery.of(context).size.width * 0.45,
           child: Lottie.asset(getWeatherAnimation(_weather?.weather[0].main)),
         ),
-      ],
-    );
-  }
-
-  Widget _buildHumidity() {
-    return Column(
-      children: [
-        Text('Humidity'),
-        Text('${_weather?.main.humidity.round()} %')
       ],
     );
   }
@@ -166,8 +162,37 @@ class _WeatherPageState extends State<WeatherPage> {
         // Temperature and condition
         _buildTempCondition(),
 
-        // Humidity
-        _buildHumidity()
+        // Spacer
+        const SizedBox(height: 20),
+
+        // Spacer
+        const SizedBox(height: 8),
+
+        // Info collection
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ValueWidget(title: 'Humidity', value: '${_weather?.main.humidity} %'),
+            const SizedBox(width: 8),
+            ValueWidget(title: 'Temp min', value: '${_weather?.main.tempMin.round()} \u00B0C'),
+            const SizedBox(width: 8),
+            ValueWidget(title: 'Temp max', value: '${_weather?.main.tempMax.round()} \u00B0C'),
+          ],
+        ),
+
+        // Spacer
+        const SizedBox(height: 8),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            ValueWidget(title: 'Pressure', value: '${_weather?.main.pressure} mb'),
+            const SizedBox(width: 8),
+            ValueWidget(title: 'Wind', value: '${_weather?.wind.speed.round()} m/s'),
+            const SizedBox(width: 8),
+            ValueWidget(title: 'Feels like', value: '${_weather?.main.feelsLike.round()} \u00B0C'),
+          ],
+        ),
       ],
     );
   }

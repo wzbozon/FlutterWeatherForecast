@@ -68,6 +68,7 @@ class _AddCityPageState extends State<AddCityPage> {
       appBar: AppBar(
         title: const Text('Add City'),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
