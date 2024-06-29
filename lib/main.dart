@@ -10,7 +10,9 @@ import 'pages/city_list_page.dart';
 import 'pages/onboarding_page.dart';
 
 void main() async {
+  // Override the HttpOverrides class to configure the proxy settings
   HttpOverrides.global = ProxyHttpOverrides();
+
   WidgetsFlutterBinding.ensureInitialized();
   bool showOnboarding = await shouldShowOnboarding();
   runApp(App(showOnboarding: showOnboarding));
