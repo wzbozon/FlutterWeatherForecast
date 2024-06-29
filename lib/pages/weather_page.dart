@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:weather_now/components/value_widget.dart';
@@ -199,12 +198,12 @@ class _WeatherPageState extends State<WeatherPage> {
           ),
       
           // Spacer
-          Expanded(
+          const Expanded(
             child: SizedBox(),
           ),
       
           // Copyright
-          Center(
+          const Center(
             child: Text(
               'Created by Denis Kutlubaev',
               style: TextStyle(fontWeight: FontWeight.w200),

@@ -4,7 +4,7 @@ class ValueWidget extends StatelessWidget {
   final String title;
   final String value;
 
-  const ValueWidget({required this.title, required this.value});
+  const ValueWidget({super.key, required this.title, required this.value});
 
   @override
   Widget build(BuildContext context) {
