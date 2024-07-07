@@ -11,7 +11,7 @@ import 'pages/onboarding_page.dart';
 
 void main() async {
   // Override the HttpOverrides class to configure the proxy settings
-  HttpOverrides.global = ProxyHttpOverrides();
+  // HttpOverrides.global = ProxyHttpOverrides();
 
   WidgetsFlutterBinding.ensureInitialized();
   bool showOnboarding = await shouldShowOnboarding();
