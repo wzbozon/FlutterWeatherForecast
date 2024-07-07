@@ -4,17 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:weather_now/pages/add_city_page.dart';
 import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather_now/providers/cities_provider.dart';
 
 import '../models/city_model.dart';
 
-class CityListPage extends StatefulWidget {
+class CityListPage extends ConsumerStatefulWidget {
   const CityListPage({super.key});
 
   @override
-  State<CityListPage> createState() => _CityListPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CityListPageState();
 }
 
-class _CityListPageState extends State<CityListPage> {
+class _CityListPageState extends ConsumerState<CityListPage> {
   List<City> cities = [];
 
   @override
@@ -80,6 +82,8 @@ class _CityListPageState extends State<CityListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final myCities = ref.watch(citiesProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Select City'),
