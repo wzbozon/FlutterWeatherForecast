@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart' as myPath;
+import 'package:path/path.dart' as path;
 
 import '../models/city_model.dart';
 
@@ -22,12 +22,14 @@ class DatabaseHelper {
 
   Future<Database> _initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
-    final path = myPath.join(dbPath, filePath);
+    final dbFullPath = path.join(dbPath, filePath);
 
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+    return await openDatabase(dbFullPath, version: 1, onCreate: _createDB);
   }
 
   Future _createDB(Database db, int version) async {
+    await _clearDatabase(db);
+
     await db.execute('''
       CREATE TABLE IF NOT EXISTS cities(
       id INTEGER PRIMARY KEY AUTOINCREMENT, 
