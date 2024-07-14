@@ -1,41 +1,21 @@
-
 import 'package:flutter/material.dart';
-import 'package:weather_now/components/value_widget.dart';
+import 'package:lottie/lottie.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../components/value_widget.dart';
 import '../models/city_model.dart';
 import '../models/weather_model.dart';
-import '../services/weather_service.dart';
-import 'package:lottie/lottie.dart';
+import '../providers/city_name_provider.dart';
+import '../providers/weather_provider.dart';
 
-class WeatherPage extends StatefulWidget {
+class WeatherPage extends ConsumerStatefulWidget {
   const WeatherPage({super.key});
 
   @override
-  State<WeatherPage> createState() => _WeatherPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _WeatherPageState();
 }
 
-class _WeatherPageState extends State<WeatherPage> {
-  // api key
-  final _weatherService = WeatherService('a38cd3af59a5037bf5d0216e3276eda3');
+class _WeatherPageState extends ConsumerState<WeatherPage> {
   Weather? _weather;
-
-  // fetch weather
-  _fetchWeather(String? cityName) async {
-    // get current city
-    cityName ??= await _weatherService.getCurrentCity();
-
-    // get weather for city
-    try {
-      final weather = await _weatherService.getWeather(cityName);
-      setState(() {
-        _weather = weather;
-      });
-    }
-
-    // any errors
-    catch (e) {
-      print(e);
-    }
-  }
 
   // weather animations
   String getWeatherAnimation(String? mainCondition) {
@@ -63,20 +43,11 @@ class _WeatherPageState extends State<WeatherPage> {
     }
   }
 
-  // init state
-  @override
-  void initState() {
-    super.initState();
-
-    // fetch weather on startup
-    _fetchWeather(null);
-  }
-
   Widget _buildCityListButton() {
     return IconButton(
       onPressed: () async {
         final selectedCity = await Navigator.pushNamed(context, '/city_list') as City;
-        _fetchWeather(selectedCity.name);
+        ref.read(cityNameProvider.notifier).updateCityName(selectedCity.name);
       },
       icon: const Icon(Icons.search, color: Colors.blue, size: 36),
     );
@@ -229,6 +200,9 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
+    final cityName = ref.watch(cityNameProvider);
+    final weatherAsyncValue = ref.watch(weatherProvider(cityName));
+
     return Scaffold(
       appBar: _buildAppBar(),
       backgroundColor: Colors.white,
@@ -238,7 +212,16 @@ class _WeatherPageState extends State<WeatherPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _buildWeatherInfo(),
+              weatherAsyncValue.when(
+                data: (weather) {
+                  _weather = weather;
+                  return _buildWeatherInfo();
+                },
+                loading: () => const CircularProgressIndicator(),
+                error: (error, stackTrace) {
+                  return Text('Error: $error');
+                },
+              ),
             ],
           ),
         ),
