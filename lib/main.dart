@@ -9,6 +9,7 @@ import 'pages/onboarding_page.dart';
 
 void main() async {
   // Override the HttpOverrides class to configure the proxy settings
+  // Used with Proxyman to debug network requests
   // HttpOverrides.global = ProxyHttpOverrides();
 
   WidgetsFlutterBinding.ensureInitialized();
