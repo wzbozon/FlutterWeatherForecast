@@ -28,20 +28,23 @@ class _OnboardingPageState extends State<OnboardingPage> {
       pages: [
         PageViewModel(
           title: "Welcome to WeatherNow",
-          body:
-          "Stay updated with the current weather conditions in any city around the world. WeatherNow provides accurate and real-time weather information at your fingertips.",
+          body: "Stay updated with the current weather conditions in any city "
+                "around the world. WeatherNow provides accurate and real-time "
+                "weather information at your fingertips.",
           image: _buildImage('onboarding/1.jpg'),
         ),
         PageViewModel(
           title: "Choose Your City",
-          body:
-          "Select any city to view its current weather. Simply search for your desired city, and get instant weather updates including temperature, humidity, and more.",
+          body: "Select any city to view its current weather. Simply search for "
+                "your desired city, and get instant weather updates including "
+                "temperature, humidity, and more.",
           image: _buildImage('onboarding/2.jpg'),
         ),
         PageViewModel(
           title: "Save Your Favorite Cities",
-          body:
-          "Add cities to your list and keep track of their weather effortlessly. Your selected cities are saved in the app's database, so you can easily access them anytime.",
+          body: "Add cities to your list and keep track of their weather effortlessly. "
+                "Your selected cities are saved in the app's database, so you can "
+                "easily access them anytime.",
           image: _buildImage('onboarding/3.jpg'),
         ),
       ],
