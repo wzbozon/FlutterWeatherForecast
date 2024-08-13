@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_now/pages/add_city_page.dart';
-import 'package:weather_now/models/city_model.dart';
 
 void main() {
   testWidgets('AddCityPage displays correctly', (WidgetTester tester) async {
