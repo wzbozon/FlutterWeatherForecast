@@ -1,21 +1,24 @@
 import 'dart:convert';
-
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import '/models/weather_model.dart';
 import 'package:http/http.dart' as http;
+import '/models/weather_model.dart';
 
 class WeatherService {
   static const baseUrl = 'http://api.openweathermap.org/data/2.5/weather';
+  final http.Client client;
   final String apiKey;
 
-  WeatherService(this.apiKey);
+  WeatherService(this.apiKey, {http.Client? client})
+      : client = client ?? http.Client();
 
   Future<Weather> getWeather(String cityName) async {
-    final response = await http.get(Uri.parse('$baseUrl?q=$cityName&appid=$apiKey&units=metric'));
+    final url = Uri.parse('$baseUrl?q=$cityName&appid=$apiKey&units=metric');
+    final response = await client.get(url);
 
     if (response.statusCode == 200) {
-      return Weather.fromJson(jsonDecode(response.body));
+      final jsonResponse = jsonDecode(response.body);
+      return Weather.fromJson(jsonResponse);
     } else {
       throw Exception('Failed to load weather data');
     }
