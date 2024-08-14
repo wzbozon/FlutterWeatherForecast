@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../models/weather_model.dart';
+import '../services/i_weather_service.dart';
 import '../services/weather_service.dart';
 
-final weatherServiceProvider = Provider<WeatherService>((ref) {
+final weatherServiceProvider = Provider<IWeatherService>((ref) {
   return WeatherService('a38cd3af59a5037bf5d0216e3276eda3');
 });
 

@@ -5,7 +5,7 @@ import 'package:weather_now/pages/onboarding_page.dart';
 void main() {
   testWidgets('OnboardingPage displays onboarding screens and navigates on completion', (WidgetTester tester) async {
     tester.view.devicePixelRatio = 1.0;
-    tester.view.physicalSize = const Size(600, 800);
+    tester.view.physicalSize = const Size(500, 800);
 
     // Pump the OnboardingPage widget
     await tester.pumpWidget(

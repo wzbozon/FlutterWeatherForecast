@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../services/weather_service.dart';
+import '../services/i_weather_service.dart';
 import '../providers/weather_provider.dart';
 
 class CityNameNotifier extends StateNotifier<String> {
-  final WeatherService _weatherService;
+  final IWeatherService _weatherService;
 
   CityNameNotifier(this._weatherService) : super('') {
     _initialize();
