@@ -15,6 +15,10 @@ Flutter Weather app
 - Local user preferences to save onboarding passed flag
 - Lottie animation for weather condition
 - Navigation using routes
+- Unit, Widget and Golden file tests
+- DI and State Management using Riverpod
+- Code Generation using Mockito and Build Runner
+- 0 Dart Analysis warnings (on 15 Aug 2024)
 
 # Screenshots
 
