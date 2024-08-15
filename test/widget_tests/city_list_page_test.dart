@@ -8,13 +8,13 @@ import 'package:weather_now/pages/city_list_page.dart';
 import 'package:weather_now/providers/cities_provider.dart';
 
 void main() {
-    Future<List<City>> getMockCitiesList() async {
-        final jsonString = await rootBundle.loadString('assets/json/default_cities.json');
-        final jsonMap = json.decode(jsonString);
-        List<dynamic> citiesJson = jsonMap["cities"];
-        List<City> citiesList = citiesJson.map((json) => City.fromMap(json)).take(3).toList();
-        return citiesList;
-    }
+  Future<List<City>> getMockCitiesList() async {
+    final jsonString = await rootBundle.loadString('assets/json/default_cities.json');
+    final jsonMap = json.decode(jsonString);
+    List<dynamic> citiesJson = jsonMap["cities"];
+    List<City> citiesList = citiesJson.map((json) => City.fromMap(json)).take(3).toList();
+    return citiesList;
+  }
 
   testWidgets('CityListPage displays correctly', (WidgetTester tester) async {
     tester.view.devicePixelRatio = 1.0;
@@ -23,16 +23,13 @@ void main() {
     // Define a list of cities to be returned by the mock provider
     final List<City> mockCitiesList = await getMockCitiesList();
 
-    // Create a mock CitiesProvider
-    final mockCitiesProvider = FutureProvider.autoDispose<List<City>>((ref) async {
-      return mockCitiesList;
-    });
-
     // Pump the WeatherPage widget
     await tester.pumpWidget(
       ProviderScope(
           overrides: [
-            citiesProvider.overrideWithProvider(mockCitiesProvider),
+            citiesProvider.overrideWith((ref) async {
+              return mockCitiesList;
+            }),
           ],
           child: const MaterialApp(
             home: CityListPage(),
